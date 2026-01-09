@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+/* 🌌 SKY */
+.sky {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at bottom, #3b0a5e, #120018);
+  z-index: 0;
+}
+
+/* 🏮 FIELD */
+#lantern-field {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 🏮 LANTERN */
+.lantern {
+  position: absolute;
+  bottom: -160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.9;
+  animation: floatUp linear forwards;
+}
+
+/* DEPTH */
+.bg { filter: blur(2px); opacity: 0.35; }
+.mid { opacity: 0.75; }
+.fg { transform: scale(1.15); }
+
+/* STRUCTURE */
+.lantern-top {
+  width: 50px;
+  height: 8px;
+  background: #d6a24a;
+  border-radius: 50%;
+}
+
+.lantern-body {
+  width: 70px;
+  height: 105px;
+  background: radial-gradient(circle,
+    #fff6d5 0%,
+    #ffd78f 60%,
+    #f2a94f 100%);
+  border-radius: 32px 32px 26px 26px;
+
+  /* 🔥 STRONG GLOW */
+  box-shadow:
+    0 0 60px rgba(255,200,140,1),
+    0 0 140px rgba(255,170,90,1),
+    0 0 220px rgba(255,150,80,0.9);
+
+  animation: glowPulse 1.8s ease-in-out infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lantern-text {
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: rgba(120,60,20,0.9);
+}
+
+.lantern-bottom {
+  width: 30px;
+  height: 6px;
+  background: #b8741f;
+  border-radius: 50%;
+}
+
+/* 🔥 FLAME */
+.flame {
+  width: 12px;
+  height: 16px;
+  background: radial-gradient(circle,
+    #fff7c0 0%,
+    #ff9f1c 60%,
+    transparent 70%);
+  border-radius: 50%;
+  margin-top: -4px;
+  animation: flicker 0.2s infinite alternate;
+  box-shadow: 0 0 20px rgba(255,140,0,1);
+}
+
+/* 🎞️ ANIMATIONS */
+@keyframes floatUp {
+  from { transform: translateY(120vh); }
+  to { transform: translateY(-160vh); }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 80px rgba(255,190,120,1); }
+  50% { box-shadow: 0 0 260px rgba(255,220,160,1); }
+  100% { box-shadow: 0 0 80px rgba(255,190,120,1); }
+}
+
+@keyframes flicker {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.25); opacity: 0.75; }
+}
+
+/* 💜 WISH */
+#wish {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+/* 🎉 FINAL */
+#final {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  opacity: 0;
+}
+
+#final h1 {
+  font-size: 2.6rem;
+  text-shadow: 0 0 40px rgba(180,120,255,1);
+}
+
+.photos {
+  display: flex;
+  gap: 40px;
+}
+
+.photos img {
+  width: 260px;
+  border-radius: 24px;
+  box-shadow:
+    0 0 80px rgba(180,100,255,0.9),
+    0 0 160px rgba(120,60,220,0.9);
+}
+
+/* 🌊 WATER */
+.water-fade {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 30vh;
+  background: linear-gradient(to top, rgba(30,0,60,0.9), transparent);
+  z-index: 2;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  #wish { font-size: 1.4rem; padding: 20px; }
+  #final h1 { font-size: 1.8rem; }
+  .photos { flex-direction: column; }
+  .photos img { width: 220px; }
+}
